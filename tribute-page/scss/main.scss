@@ -1,0 +1,349 @@
+@import './media.scss';
+
+
+
+$banner-background: black;
+$banner-title-color: wheat;
+$banner-subtitle-color: peachpuff;
+$banner-scroll-color: #FFFFFF4A;
+$banner-scroll-color-hover: #FFFFFF78;
+$content-background-color: #ede8d5;
+$avatar-border-color: #59341f;
+$avatar-border-shadow: #434343;
+$lighter-border-shadow: #43434375;
+$menu-background-color: #ff6767;
+$home-background-color: #2751c7;
+$books-background-color: #339284;
+$achievements-background-color: #eea80c;
+$award-background-color: #ffeddb;
+$modal-overlay-color: #00000078;
+
+html, body {
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+}
+
+
+.centered{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.vertical-center{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.horizontal-center{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.w-100{
+    width: 100%;
+}
+
+.hidden {
+    display: none!important;
+}
+
+#banner{
+    background-color: black;
+    height: 100vh;
+
+
+    #title {
+        margin: 0;
+        position: relative;
+        color: $banner-title-color;
+        font-family: 'Ceviche One', cursive;
+        width: 100%;
+        text-align: center;
+        letter-spacing: 0.1em;
+        font-size: 3em;
+        @include media(tablet, desktop) {
+            font-size: 5em;
+        }
+
+    }
+
+    #subtitle{
+        width: 100%;
+        color: $banner-subtitle-color;
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+        @include media(tablet, desktop) {
+            font-size: 2em;
+        }
+    }
+
+    #scroll-down{
+        font-size: 2.5em;
+        color: $banner-scroll-color;
+        position: absolute;
+        bottom: 0.6em;
+        transform: rotate(-90deg) translateX(-50%);
+        &::before{
+            content: '\2770';
+        }
+        
+        &:hover{
+            color: $banner-scroll-color-hover;
+            cursor: pointer;
+            
+        }
+    }
+
+}
+
+#content{
+    min-height: 100vh;
+    background-color: $content-background-color;
+    font-size: 14px;
+    line-height: 1.4;
+
+
+    .section-heading{
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .section-details{
+        padding-left: 2em;
+        padding-right: 2em;
+        text-align: justify;
+    }
+
+    #floating-buttons{
+        position: fixed;
+        left: 100%;
+        transform: translateX(-120%);
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        
+
+        .floating-button{
+            
+            text-align: center;
+            color: white;
+            box-shadow: 3px 3px 11px $avatar-border-shadow;
+            border-radius: 50%;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: none;
+            z-index: 1000;
+
+            .fa{
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        #mobile-achievements{
+            background-color: $achievements-background-color;
+        }
+
+        #mobile-books{
+            background-color: $books-background-color;
+        }
+
+        #mobile-home{
+            background-color: $home-background-color;
+        }
+
+        #mobile-menu{
+            background-color: $menu-background-color;
+        }
+    }
+}
+
+#home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    #avatar{
+        padding: 0.5em;
+        img{
+            border-radius: 50%;
+            max-width: 50vw;
+            border: 2px solid $avatar-border-color;
+            box-shadow: 2px 2px 9px 0px $avatar-border-shadow;
+            display: block;
+        }
+
+        #img-caption {
+            margin-top: 15px;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+
+    #disclaimer {
+        padding: 0 10px 10px 10px;
+        background-color: white;
+        border: 1px dotted red;
+        margin-top: 20px;
+        .fa-info-circle {
+            color: blue;
+        }
+
+        #references {
+            display: none;
+        }
+    }
+}
+
+
+#books {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    #bookshelf {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        row-gap: 20px;
+        column-gap: 10px;
+        margin-top: 15px;
+        margin-bottom: 30px;
+
+        .book-display{
+            height: 200px;
+            
+            figure {
+                margin: 0;
+                height: 100%;
+                img {
+                    height: 100%;
+                    position: relative;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    box-shadow: 3px 3px 9px 4px $avatar-border-shadow;
+                }
+            }
+        }
+    }
+}
+
+#achievements {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    #award-list {
+        display: flex;
+        flex-direction: column;
+
+        .award {
+            height: 80px;
+            background-color: $award-background-color;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            box-shadow: 1px 3px 3px $lighter-border-shadow;
+            border-radius: 4px;
+            figure {
+                margin: 0 20px;
+                height: 100%;
+                min-width: 20%;
+                img {
+                    height: 60%;
+                    position: relative;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    max-width: 20vw;
+                }
+            }
+
+            .award-details {
+                flex-grow: 1;
+                flex-grow: 1;
+                padding: 0 10px;
+                .award-title {
+                    font-size: 16px;
+                    margin-top: 0;
+                    margin-bottom: 0;
+                    text-align: left;
+                }
+                .award-year{
+                    margin-top: 0;
+                    margin-bottom: 0;
+                }
+                .award-description {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+
+#modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: $modal-overlay-color;
+    z-index: 2000;
+    font-size: 14px;
+    line-height: 1.4;
+
+    #modal-content {
+        width: 80%;
+        // height: 400px;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        figure {
+            margin: 0;
+            width: 100%;
+            #modal-figure{
+                max-height: 20vh;
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+                max-width: 100%;
+            }
+        }
+
+        #modal-details{
+            text-align: justify;
+
+            .reference-link {
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
+
+
+
+
