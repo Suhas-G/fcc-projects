@@ -111,7 +111,9 @@ function showSection(sectionName, event){
             section.classList.add("hidden")
         }
     }
-    toggleMenuButtons(event);
+    if (isMobileWidth()){
+        toggleMenuButtons(event);
+    }
 }
 
 function populateModal(img, title, details){
@@ -145,8 +147,15 @@ function showModal(event){
 }
 
 function closeModal(event){
-    const modal = document.getElementById("modal");
     if (event.target === event.currentTarget){
+        const modal = document.getElementById("modal");
+        const modalFigure = document.getElementById("modal-figure");
+        modalFigure.setAttribute("src", "");
+        modalFigure.setAttribute("alt", "");
+        const modalHeading = document.getElementById("modal-heading");
+        modalHeading.innerHTML = "";
+        const modalDetails = document.getElementById("modal-details");
+        modalDetails.innerHTML = "";
         fadeOut(modal, 100);
     }
 }
@@ -161,14 +170,32 @@ function showReferences(){
     const titleDom = document.getElementById("modal-heading");
     titleDom.innerText = "References"
     const detailsDom = document.getElementById("modal-details");
+    detailsDom.innerHTML = "";
     detailsDom.appendChild(references);
     _showElement(modal);
     fadeIn(modal, 100);
 }
 
 
+function isMobileWidth(){
+    const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    return vw < 768;
+}
 
-window.addEventListener("scroll", showFloatingButton)
+
+if (isMobileWidth()) {
+    window.addEventListener("scroll", showFloatingButton)
+} else {
+    const tabs = document.getElementsByClassName("tab");
+    for (let index = 0; index < tabs.length; index++) {
+        const tab = tabs[index];
+        tab.addEventListener("click", (event) => {
+            document.querySelector(".tab.selected").classList.toggle("selected");
+            tab.classList.toggle("selected");
+            showSection(event.currentTarget.getAttribute("data-target"), event);
+        });
+    }
+}
 document.getElementById("scroll-down").addEventListener("click", scrollToContent);
 document.getElementById("mobile-menu").addEventListener("click", toggleMenuButtons);
 document.getElementById("mobile-home").addEventListener("click", showSection.bind(this, "home"));
@@ -182,3 +209,4 @@ for (let index = 0; index < triggers.length; index++) {
 document.getElementById("modal").addEventListener("click", closeModal)
 document.getElementById("content").addEventListener("click", hideAllMenuButtons);
 document.getElementById("disclaimer").addEventListener("click", showReferences);
+document.getElementById("modal-close").addEventListener("click", closeModal)
