@@ -44,7 +44,17 @@ main {
 
 #banner {
   background-color: black;
+  background-image: url("../images/blur-book-stack-books-bookshelves-590493-medium.jpg");
+  background-size: cover;
   height: 100vh;
+  -webkit-box-shadow: inset 0 0 2000px 2000px #000000a1;
+          box-shadow: inset 0 0 2000px 2000px #000000a1;
+}
+
+@media (min-width: 1024px) {
+  #banner {
+    background-image: url("../images/blur-book-stack-books-bookshelves-590493-large.jpg");
+  }
 }
 
 #banner #title {

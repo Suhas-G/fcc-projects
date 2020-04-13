@@ -3,6 +3,7 @@
 
 
 $banner-background: black;
+$banner-background-shadow: #000000a1;
 $banner-title-color: wheat;
 $banner-subtitle-color: peachpuff;
 $banner-scroll-color: #FFFFFF4A;
@@ -63,9 +64,15 @@ main {
 }
 
 #banner {
-    background-color: black;
+    background-color: $banner-background;
+    background-image: url("../images/blur-book-stack-books-bookshelves-590493-medium.jpg");
+    background-size: cover;
     height: 100vh;
+    box-shadow: inset 0 0 2000px 2000px $banner-background-shadow;
 
+    @include media(desktop) {
+        background-image: url("../images/blur-book-stack-books-bookshelves-590493-large.jpg");
+    }
 
     #title {
         margin: 0;
